@@ -1,33 +1,50 @@
 import tkinter as tk
 from bg_get_verse import getBGVerse
 
-verses = getBGVerse()
 window = tk.Tk()
+window.title('Bhagvad Gita')
+
+verseFrame = tk.Frame(window,height=11,width=200)
+verseFrame.grid(row=0,column=0)
+
+cur_verse = getBGVerse()
+
 displayVerseHindi = tk.Label(
-	text=verses[0],
+    verseFrame,
+	text=cur_verse[0],
 	height=10,
 	width=200,
 	wraplength=1000
-)#getBGVerse())
-displayVerseHindi.pack()
+)
+displayVerseHindi.grid(row=0,column=0)#getBGVerse())
+#displayVerseHindi.pack()
 
 displayVerseEng = tk.Label(
-	text=verses[1],
+    verseFrame,
+	text=cur_verse[1],
 	width=200,
 	wraplength=1000,
 	)
-displayVerseEng.pack()
+displayVerseEng.grid(row=1,column=0)
+#displayVerseEng.pack()
 
-def handle_click(event):
-	button.config()
+buttonFrame = tk.Frame(window,height=2,width=6)
+buttonFrame.grid(row=1,column=0)
+
+def handle_refresh_click(event):
+	refreshButton.config()
 	tmp = getBGVerse()
 	displayVerseHindi.config(text=tmp[0])
 	displayVerseEng.config(text=tmp[1])
 
-button = tk.Button(
+refreshButton = tk.Button(
+    buttonFrame,
 	text="Refresh",
 	width=5,
 	height=1)
-button.bind("<Button-1>",handle_click)
-button.pack(pady=8)
+refreshButton.grid(row=0,column=1,padx=5,pady=8)
+refreshButton.bind("<Button-1>",handle_refresh_click)
+#refreshButton.pack(pady=8)
+
+
 window.mainloop()
