@@ -2,3 +2,5 @@
 
 Script to get random verses from Bhagvad Gita.
 Run with python3 ./bhagvad_gita.py
+
+Have also included a UI version.
